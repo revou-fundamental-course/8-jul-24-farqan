@@ -1,10 +1,9 @@
-document.getElementById('calculateBtn').addEventListener('click', function() {
-    const weight = document.getElementById('weight').value;
-    const height = document.getElementById('height').value / 100; // Convert cm to meters
-    const bmi = (weight / (height * height)).toFixed(1);
-    document.getElementById('result').innerText = bmi;
+function calculateBMI() {
+    const height = parseFloat(document.getElementById('height').value);
+    const weight = parseFloat(document.getElementById('weight').value);
+    const gender = document.querySelector('input[name="gender"]:checked').value;
+    const age = parseFloat(document.getElementById('age').value);
 
-    let resultText = 'Anda memiliki berat badan ';
     if (height > 0 && weight > 0 && gender && age > 0) {
         const bmi = weight / ((height / 100) ** 2);
         let category = '';
@@ -61,14 +60,15 @@ document.getElementById('calculateBtn').addEventListener('click', function() {
                 advice = 'Anda berada dalam kategori obesitas. Sebaiknya segera konsultasikan dengan dokter atau ahli gizi untuk mendapatkan penanganan yang tepat dan memastikan kesejahteraan Anda.';
             }
         }
+
+        document.getElementById('result').innerHTML = `BMI Anda adalah ${bmi.toFixed(2)}`;
+        document.getElementById('bmiCategory').innerHTML = `Anda memiliki ${category}`;
+        document.getElementById('advice').innerHTML = advice;
+        document.getElementById('downloadResult').style.display = 'block';
+    } else {
+        document.getElementById('result').innerHTML = 'Masukkan nilai tinggi, berat, jenis kelamin, dan usia yang valid.';
+        document.getElementById('bmiCategory').innerHTML = '';
+        document.getElementById('advice').innerHTML = '';
+        document.getElementById('downloadResult').style.display = 'none';
     }
-    document.getElementById('result').innerText = bmi + ' - ' + resultText;
-});
-
-document.getElementById('resetBtn').addEventListener('click', function() {
-    document.getElementById('weight').value = '';
-    document.getElementById('age').value = '';
-    document.getElementById('height').value = '';
-    document.getElementById('result').innerText = '-';
-});
-
+}
