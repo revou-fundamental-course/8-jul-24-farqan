@@ -2,6 +2,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    display: flex;
 }
 
 .container {
@@ -38,10 +39,12 @@ input[type="radio"], input[type="text"], input[type="number"], button {
     box-sizing: border-box;
 }
 button {
+    padding: 5px;
     background-color: #007BFF;
     color: #fff;
     border: none;
     cursor: pointer;
+    margin: 5px;
 }
 button:disabled {
     background-color: #ccc;
